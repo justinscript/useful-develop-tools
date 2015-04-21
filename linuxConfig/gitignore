@@ -1,0 +1,2 @@
+# Ignore everything by default. To track new files, use "git add -f" 
+*

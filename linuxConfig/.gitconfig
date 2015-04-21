@@ -1,0 +1,16 @@
+[user]
+	name = Feross Aboukhadijeh
+	email = feross@feross.org
+[color]
+	diff = auto
+[core]
+	editor = vim
+	autocrlf = input
+	excludesfile = ~/.gitignore-global
+[push]
+	default = tracking
+[branch]
+	autosetuprebase = always
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f

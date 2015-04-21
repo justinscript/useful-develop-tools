@@ -1,0 +1,15 @@
+{
+	"installed_packages":
+	[
+		"DocBlockr",
+		"Git",
+		"GitGutter",
+		"HTML-CSS-JS Prettify",
+		"Jade",
+		"JSHint Gutter",
+		"Markdown Preview",
+		"nginx",
+		"Stylus",
+		"Text Pastry"
+	]
+}

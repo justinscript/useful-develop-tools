@@ -1,0 +1,43 @@
+# General
+alias l='ls -lha'
+
+# Git
+# (more aliases in ~/.oh-my-zsh/plugins/git)
+alias gd='git diff'
+compdef _git gd=git-diff
+alias gs='git status'
+compdef _git gs=git-status
+alias glg='git log'
+compdef _git glg=git-log
+alias gsl='git stash -u && gl && git stash pop'
+
+# Server-specific shortcuts
+if [[ -f "/etc/hostname" ]] ; then
+  # Admin stuff
+  alias uu='sudo aptitude update && sudo aptitude upgrade'
+  alias ss='sudo service'
+  alias apt='sudo aptitude'
+
+  # Folder stuff
+  alias www='cd ~/www'
+  alias log='cd ~/www/log'
+  alias apache2='cd /etc/apache2/'
+  alias nginx='cd /etc/nginx/'
+fi
+
+# Mac-specific shortcuts
+if [[ ! -f "/etc/hostname" ]] ; then
+
+  # cyberhobo
+  alias git='cyberhobo git'
+  alias npm='cyberhobo npm'
+
+  alias gh='github'
+  alias mongod='/usr/local/Cellar/mongodb/2.4.3-x86_64/bin/mongod'
+  alias mongoremote='ssh -L 27017:localhost:27017 -N feross@athena'
+  alias patch='git pull && npm version patch && git push && git push --tags && npm publish'
+  alias minor='git pull && npm version minor && git push && git push --tags && npm publish'
+  alias major='git pull && npm version major && git push && git push --tags && npm publish'
+  alias redis='redis-server /usr/local/etc/redis.conf'
+  alias s='subl'
+fi
