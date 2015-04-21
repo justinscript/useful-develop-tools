@@ -1,0 +1,61 @@
+#!/bin/bash
+### by zxc
+
+### BEGIN INIT INFO
+# Provides: rsyncd
+# Required-Start: $syslog
+# Required-Stop: $syslog
+# Default-Stop: 0 1 6
+# Short-Description: Start up the rsyncd server sevice
+# Description: msun rsyncd
+### END INIT INFO
+
+# Source function library.
+. /etc/init.d/functions
+
+RETVAL=0
+RSYNC="/usr/bin/rsync"
+RSYNC_PID="/var/run/rsyncd.pid"
+RSYNC_LOCK='/var/run/rsyncd.lock'
+start() {
+	[ -x $RSYNC ] || exit 5
+
+	echo "start rsyncd: "
+	$RSYNC --daemon
+	RETVAL=$?
+	return $RETVAL
+}	
+stop() {
+	echo "Shutting down rsyncd: "
+	killproc -p $RSYNC_PID
+	RETVAL=$?
+        if [ $RETVAL -eq 0 ]; then
+            if [ -e ${RSYNC_PID} ]; then
+                rm ${RSYNC_PID}
+            fi
+            if [ -e ${RSYNC_LOCK} ]; then
+                rm ${RSYNC_LOCK}
+            fi
+        fi
+	return $RETVAL
+}
+restart() {
+	stop
+	start
+}	
+case "$1" in
+  start)
+  	start
+	;;
+  stop)
+  	stop
+	;;
+  restart)
+  	restart
+	;;
+  *)
+	echo $"Usage: $0 {start|stop|restart}"
+	exit 2
+esac
+
+exit $?

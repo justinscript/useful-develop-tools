@@ -1,0 +1,55 @@
+#!/bin/bash
+### by zxc
+### syslog-ng script 
+
+### BEGIN INIT INFO
+# Provides: memcached
+# Required-Start: $syslog
+# Required-Stop: $syslog
+# Default-Stop: 0 1 6
+# Short-Description: Start up the memcached server sevice
+# Description: msun memcached
+### END INIT INFO
+
+# Source function library.
+. /etc/init.d/functions
+
+RETVAL=0
+
+MEMCACHED_HOME="/yueji/run/memcached"
+MEMCACHED="$MEMCACHED_HOME/bin/memcached"
+MEMCACHED_PID="$MEMCACHED_HOME/var/memcached.pid"
+start() {
+	[ -x $MEMCACHED ] || exit 5
+
+	echo "start memcached: "
+	$MEMCACHED -u nobody -d -P $MEMCACHED_PID -m 8192
+	RETVAL=$?
+	return $RETVAL
+}	
+stop() {
+	echo "Shutting down memcadhed: "
+	killproc -p $MEMCACHED_PID
+	RETVAL=$?
+	return $RETVAL
+}
+restart() {
+	stop
+	start
+}	
+case "$1" in
+  start)
+  	start
+	;;
+  stop)
+  	stop
+	;;
+  restart)
+  	restart
+	;;
+  *)
+	echo $"Usage: $0 {start|stop|restart}"
+	exit 2
+esac
+
+exit $?

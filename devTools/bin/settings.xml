@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+    <pluginGroups>
+        <pluginGroup>com.ms.maven.plugins</pluginGroup>
+    </pluginGroups>
+
+    <servers>
+        <server>
+            <id>scm.deploy.account</id>
+            <username>zxc</username>
+            <password>zxc123</password>
+        </server>
+    </servers>
+
+    <profiles>
+        <profile>
+            <id>msun_central</id>
+            <repositories>
+                <!-- å†…éƒ¨jaråŒ…ï¼Œæ”¯æŒsnapshot -->
+                <repository>
+                    <id>central</id>
+                    <name>central internal lib</name>
+                    <url>http://repo.msun-inc.com:7080/nexus/content/groups/public/</url>
+                    <snapshots>  
+                        <enabled>true</enabled>  
+                        <updatePolicy>interval:60</updatePolicy>  
+                        <checksumPolicy>warn</checksumPolicy>  
+                    </snapshots>  
+                </repository>
+            </repositories>
+            <pluginRepositories>  
+                <pluginRepository>  
+                    <id>plugin-central</id>  
+                    <name>central plugin Repository</name>  
+                    <url>http://repo.msun-inc.com:7080/nexus/content/groups/public/</url>
+                    <snapshots>  
+                        <enabled>true</enabled>  
+                        <updatePolicy>interval:60</updatePolicy>  
+                        <checksumPolicy>warn</checksumPolicy>  
+                    </snapshots>
+                </pluginRepository>  
+            </pluginRepositories>  
+        </profile>
+    </profiles>
+  
+    <activeProfiles>
+        <activeProfile>msun_central</activeProfile>
+    </activeProfiles>
+
+</settings>

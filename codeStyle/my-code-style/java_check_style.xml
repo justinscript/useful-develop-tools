@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+    "-//Puppy Crawl//DTD Check Configuration 1.2//EN"
+    "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
+
+<!--
+
+  Checkstyle configuration that checks the sun coding conventions from:
+
+    - the Java Language Specification at
+      http://java.sun.com/docs/books/jls/second_edition/html/index.html
+
+    - the Sun Code Conventions at http://java.sun.com/docs/codeconv/
+
+    - the Javadoc guidelines at
+      http://java.sun.com/j2se/javadoc/writingdoccomments/index.html
+
+    - the JDK Api documentation http://java.sun.com/j2se/docs/api/index.html
+
+    - some best practices
+
+  Checkstyle is very configurable. Be sure to read the documentation at
+  http://checkstyle.sf.net (or in your downloaded distribution).
+
+  Most Checks are configurable, be sure to consult the documentation.
+
+  To completely disable a check, just comment it out or delete it from the file.
+
+  Finally, it is worth reading the documentation.
+
+-->
+
+<module name="Checker">
+	<!--定义默认的警告级别-->
+	<property name="severity" value="warning"/>
+
+	<!--每超过5行就检查为重复代码编码为UTF-8，-->
+	  <module name="StrictDuplicateCode">
+		<property name="min" value="5"/>
+		<!--<property name="charset" value="UTF-8"/>-->
+	  </module>
+
+    <module name="TreeWalker">
+
+		<!--检查类和接口的名称，默认规则是^[A-Z][a-zA-Z0-9]*$，error-->
+		<module name="TypeName">
+		  <property name="severity" value="error"/>
+		</module>
+		<!--包名的命名规范-->
+		<module name="PackageName">
+		  <property name="format" value="^[a-z]+(\.[a-zA-Z_][a-zA-Z]*)*$"/>
+		</module>
+		<!-- 命名方面的检查，它们都使用了Sun官方定的规则。 -->   
+		<!--方法名的命名规范，默认规则是：^[a-z][a-zA-Z0-9]*$-->
+	    <module name="MethodName"/>
+		<!-- 常量名的检查 默认规则是：^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$-->   
+        <module name="ConstantName" />
+        <!-- 局部的final变量，包括catch中的参数的检查 -->   
+        <module name="LocalFinalVariableName" />   
+        <!-- 局部的非final型的变量，包括catch中的参数的检查 -->   
+        <module name="LocalVariableName" />  
+		<!-- 仅仅是static型的变量（不包括static final型）的检查 -->   
+        <module name="StaticVariableName" />   
+        <!-- 非static型变量的检查 -->   
+        <module name="MemberName" />
+        <!-- 方法的参数名 -->   
+        <module name="ParameterName " />
+		
+		<!-- import方面的检查 -->   
+        <!-- import中避免星号"*" -->   
+        <module name="AvoidStarImport" />   
+        <!--   
+            没用的import检查，比如：1.没有被用到2.重复的3.import java.lang的4.import  
+            与该类在同一个package的   
+        -->   
+        <module name="UnusedImports" /> 
+
+		<!-- 长度方面的检查 -->   
+        <!-- 文件长度不超过1500行 -->
+		<!--
+		  <module name="FileLength">
+			<property name="max" value="3100"/>
+		  </module>
+		-->
+		<!-- 每行不超过200个字-->   
+        <module name="LineLength">   
+            <property name="max" value="200" />   
+        </module>
+        <!-- 方法的参数个数不超过5个。 并且不对构造方法进行检查-->   
+        <module name="ParameterNumber">   
+            <property name="max" value="5" />
+        </module>   
+
+		<!-- 空白检查  -->   
+		<module name="EmptyForIteratorPad">
+		  <property name="option" value="space"/>
+		</module>
+		<!-- 允许方法名后紧跟左边圆括号"(" -->   
+        <module name="MethodParamPad" />   
+        <!-- 在类型转换时，不允许左圆括号右边有空格，也不允许与右圆括号左边有空格 -->
+		<module name="TypecastParenPad">
+		  <property name="tokens" value="TYPECAST"/>
+		</module>
+		<module name="WhitespaceAfter"/>
+		<module name="WhitespaceAround">
+		  <property name="tokens" value="BAND,BAND_ASSIGN,BOR,BOR_ASSIGN,BSR,BSR_ASSIGN,BXOR,BXOR_ASSIGN,COLON,DIV,DIV_ASSIGN,EQUAL,GE,GT,LAND,LCURLY,LE,LITERAL_ASSERT,LITERAL_CATCH,LITERAL_DO,LITERAL_ELSE,LITERAL_FINALLY,LITERAL_FOR,LITERAL_IF,LITERAL_RETURN,LITERAL_SYNCHRONIZED,LITERAL_TRY,LITERAL_WHILE,LOR,LT,MINUS,MINUS_ASSIGN,MOD,MOD_ASSIGN,NOT_EQUAL,PLUS,PLUS_ASSIGN,QUESTION,RCURLY,SL,SLIST,SL_ASSIGN,SR,SR_ASSIGN,STAR,STAR_ASSIGN,LITERAL_ASSERT,TYPE_EXTENSION_AND,WILDCARD_TYPE"/>
+		</module>
+
+        <!-- 关键字 -->   
+        <!--   
+            每个关键字都有正确的出现顺序。比如 public static final XXX 是对一个常量的声明。如果使用 static  
+            public final 就是错误的   
+        -->   
+        <module name="ModifierOrder" />   
+        <!-- 多余的关键字 -->   
+        <module name="RedundantModifier" />
+
+
+		<!-- 编码方面的检查 -->   
+		<!-- 多余的括号 -->   
+        <module name="AvoidNestedBlocks">
+			<property name="severity" value="error"/>   
+            <property name="allowInSwitchCase" value="true" />   
+        </module>
+		<!-- 不必要的圆括号 -->   
+        <module name="UnnecessaryParentheses" /> 
+        <!-- 确保某个class 在被使用时都已经被初始化成默认值(对象是null,数字和字符是0,boolean 变量是false.) -->   
+        <module name="ExplicitInitialization" />   
+        <!-- 不许有同样内容的String -->   
+        <module name="MultipleStringLiterals" />   
+        <!-- 同一行不能有多个声明 -->   
+        <module name="MultipleVariableDeclarations" /> 
+        <!-- 不许出现空语句 -->   
+        <module name="EmptyStatement" />   
+		<!-- 循环控制变量不能被修改 -->   
+        <module name="ModifiedControlVariable" />   
+        <!-- 多余的throw -->   
+        <module name="RedundantThrows" />
+		<!-- String的比较不能用!= 和 == -->   
+        <module name="StringLiteralEquality" />   
+        <!-- if最多嵌套3层 -->   
+        <module name="NestedIfDepth">   
+            <property name="max" value="3" />   
+        </module>   
+        <!-- try最多被嵌套2层 -->   
+        <module name="NestedTryDepth">   
+            <property name="max" value="2" />   
+        </module>   
+        <!-- clone方法必须调用了super.clone() -->   
+        <module name="SuperClone" />   
+        <!-- finalize 必须调用了super.finalize() -->   
+        <module name="SuperFinalize" />  
+		<!-- 确保一个类有package声明 -->   
+        <module name="PackageDeclaration" />   
+        <!-- 一个方法中最多有3个return -->   
+        <module name="ReturnCount">   
+            <property name="max" value="3" />   
+            <property name="format" value="^$" />   
+        </module>
+
+		<!-- 各种量度 -->   
+        <!-- 布尔表达式的复杂度，不超过3 -->   
+        <module name="BooleanExpressionComplexity" />
+
+		<!--综合-->
+		<!-- 禁止使用System.out.println -->   
+		<!--
+        <module name="GenericIllegalRegexp">   
+            <property name="format" value="System\.out\.println" />   
+            <property name="ignoreComments" value="true" />   
+        </module>   
+        -->
+        <!-- 不许使用main方法 -->   
+        <module name="UncommentedMain" />   
+        <!-- 检查并确保所有的常量中的L都是大写的。因为小写的字母l跟数字1太象了 -->   
+        <module name="UpperEll" />   
+		<!--   
+            检查java代码的缩进 默认配置：基本缩进 4个空格，新行的大括号：0。新行的case 4个空格。   
+        -->  
+		<module name="Indentation"/>
+
+    </module>
+
+	  <module name="FileLength">
+			<property name="max" value="3100"/>
+	  </module>
+	  <module name="StrictDuplicateCode">
+		<property name="min" value="5"/>
+		<property name="charset" value="UTF-8"/>
+	  </module>
+</module>
