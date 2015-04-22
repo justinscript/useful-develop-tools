@@ -1,0 +1,1 @@
+iostat |egrep '^sd|^hd' | awk '{print "ios: "$0}'
