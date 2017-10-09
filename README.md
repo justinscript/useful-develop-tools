@@ -1,2 +1,2 @@
-# usefull-develop-tools
-usefull develop tools sets
+# useful-develop-tools
+useful develop tools sets
