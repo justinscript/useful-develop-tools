@@ -5,7 +5,7 @@
 # @Usage
 #   $ ./show-busy-java-threads.sh
 #
-# @source https://github.com/Lawrence-zxc/useful-develop-tools.git
+# @source https://github.com/oldratlee/useful-scripts/blob/master/show-busy-java-threads.sh
 
 PROG=`basename $0`
 
