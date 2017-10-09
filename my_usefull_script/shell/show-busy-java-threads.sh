@@ -5,7 +5,7 @@
 # @Usage
 #   $ ./show-busy-java-threads.sh
 #
-# @author zxc
+# @source https://github.com/Lawrence-zxc/useful-develop-tools.git
 
 PROG=`basename $0`
 
